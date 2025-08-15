@@ -52,7 +52,7 @@ This model uses **transfer learning** with a pre-trained CNN to leverage existin
     * **Loss Functions:** Mean Squared Error (MSE) for age and Binary Cross-Entropy (BCE) for gender. The BCE loss was weighted **25:1**.
 
     * **Regularization:** Early stopping was used with a maximum of 200 epochs.
-<img src="images/model1B.png" alt="Model B Architecture" style="width: 100%; height: auto; border-radius: 8px;">
+<img src="images/model1B.png" alt="Model B Architecture" style="width: 50%; height: auto; border-radius: 8px;">
 *Figure 2: Model B (Pre-trained Model) Architecture.*
 
 ---
@@ -114,12 +114,6 @@ This model achieved better age MAE and slightly better gender accuracy than the 
         <p><em>Figure Z: Distribution of Difference in Predicted Age to Actual Age (Male Only)</em></p>
     </div>
 </div>
-*Figure A: Distributions of Difference in Predicted Age to Actual Age by Gender*
-
----
-
-### Gender Bias (Predicted Age vs. Actual Age Scatter Plots)
-
 <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
     <div style="width: 30%; text-align: center; margin-bottom: 20px;">
         <img src="images/age_scatter_version_four_mini_model_a_9.png" alt="Overall Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
@@ -134,6 +128,36 @@ This model achieved better age MAE and slightly better gender accuracy than the 
         <p><em>Figure R: Validation Set Age to Predicted (Male Only)</em></p>
     </div>
 </div>
-*Figure B: Predicted Age to Age in the Validation Set by Gender*
+*Model A Predicted Age to Age in the Validation Set by Gender*
 
 
+
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_one_model_b_3.png" alt="Overall Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure X: Distribution in Difference in Predicted Age to Actual Age (Overall)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_one_model_b_3_only_females.png" alt="Female Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Y: Distribution of Difference in Predicted Age to Actual Age (Female Only)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_one_model_b_3_only_males.png" alt="Male Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Z: Distribution of Difference in Predicted Age to Actual Age (Male Only)</em></p>
+    </div>
+</div>
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_one_model_b_3.png" alt="Overall Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure P: Validation Set Age to Predicted (Overall)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_one_model_b_3_only_females.png" alt="Female Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Q: Validation Set Age to Predicted Age (Female Only)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_one_model_b_3_only_males.png" alt="Male Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure R: Validation Set Age to Predicted (Male Only)</em></p>
+    </div>
+</div>
+*Model B Predicted Age to Age in the Validation Set by Gender*
