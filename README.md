@@ -32,6 +32,7 @@ This model was built from scratch, taking inspiration from the AlexNet architect
 
     * **Regularization:** Early stopping was used to prevent overfitting, with a maximum of 100 epochs.
 
+
 *Figure 1: Our proposed model architecture for the custom CNN (model 4 mini). Normalisation and max pooling layers have been omitted.*
 
 ---
@@ -93,3 +94,45 @@ This model achieved better age MAE and slightly better gender accuracy than the 
 | **Female** | 0.8294 | 0.9073 | 0.9009 | 0.8636 |
 
 *Figure 4: Training and Validation Loss for the Pre-trained CNN.*
+
+
+## 👽 Extras
+
+### Gender Bias (Predicted Age to Actual Age Distribution)
+
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_four_mini_model_a_9.png" alt="Overall Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure X: Distribution in Difference in Predicted Age to Actual Age (Overall)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_four_mini_model_a_9_only_females.png" alt="Female Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Y: Distribution of Difference in Predicted Age to Actual Age (Female Only)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_distribution_version_four_mini_model_a_9_only_males.png" alt="Male Age Difference Distribution" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Z: Distribution of Difference in Predicted Age to Actual Age (Male Only)</em></p>
+    </div>
+</div>
+*Figure A: Distributions of Difference in Predicted Age to Actual Age by Gender*
+
+---
+
+### Gender Bias (Predicted Age vs. Actual Age Scatter Plots)
+
+<div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_four_mini_model_a_9.png" alt="Overall Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure P: Validation Set Age to Predicted (Overall)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_four_mini_model_a_9_only_females.png" alt="Female Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure Q: Validation Set Age to Predicted Age (Female Only)</em></p>
+    </div>
+    <div style="width: 30%; text-align: center; margin-bottom: 20px;">
+        <img src="images/age_scatter_version_four_mini_model_a_9_only_males.png" alt="Male Age Scatter Plot" style="width: 100%; height: auto; border-radius: 8px;">
+        <p><em>Figure R: Validation Set Age to Predicted (Male Only)</em></p>
+    </div>
+</div>
+*Figure B: Predicted Age to Age in the Validation Set by Gender*
+
