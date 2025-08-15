@@ -32,7 +32,7 @@ This model was built from scratch, taking inspiration from the AlexNet architect
 
     * **Regularization:** Early stopping was used to prevent overfitting, with a maximum of 100 epochs.
 
-
+<img src="images/model4Mini.png" alt="Model 4 Mini Architecture" style="width: 100%; height: auto; border-radius: 8px;">
 *Figure 1: Our proposed model architecture for the custom CNN (model 4 mini). Normalisation and max pooling layers have been omitted.*
 
 ---
@@ -52,7 +52,7 @@ This model uses **transfer learning** with a pre-trained CNN to leverage existin
     * **Loss Functions:** Mean Squared Error (MSE) for age and Binary Cross-Entropy (BCE) for gender. The BCE loss was weighted **25:1**.
 
     * **Regularization:** Early stopping was used with a maximum of 200 epochs.
-
+<img src="images/model1B.png" alt="Model B Architecture" style="width: 100%; height: auto; border-radius: 8px;">
 *Figure 2: Model B (Pre-trained Model) Architecture.*
 
 ---
@@ -135,4 +135,5 @@ This model achieved better age MAE and slightly better gender accuracy than the 
     </div>
 </div>
 *Figure B: Predicted Age to Age in the Validation Set by Gender*
+
 
