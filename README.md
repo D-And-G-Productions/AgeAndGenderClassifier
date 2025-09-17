@@ -6,6 +6,16 @@ The project was completed by Dario Cline (dc903) and Germain McCaulay-Jones (gmj
 
 ---
 
+## Web Application
+
+The model can be easily run via a containerised web application.
+
+<img src="images/web_application_demo_image.png" alt="Model 4 Mini Architecture" style="width: 70%; height: auto; border-radius: 8px;">
+
+For more information refer to `application/README.md`.
+
+---
+
 ## 🚀 Getting Started
 
 The Keras model files are available at the following links:
