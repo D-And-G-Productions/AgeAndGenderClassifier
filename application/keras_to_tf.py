@@ -9,54 +9,70 @@ from keras.regularizers import l2
 class VersionFourMiniModelA(models.Model):
     def __init__(self):
         inputs = layers.Input(shape=(128, 128, 3))
-        
-        # 1st block (cnn) - output size (62*62*96)
+    
+        # 1st block (cnn) 
         x = layers.Conv2D(filters = 8, kernel_size = (5, 5), strides = (2,2), padding = "valid")(inputs)
         x = layers.BatchNormalization()(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
+        x = layers.Activation('gelu')(x)
 
-        # 2nd block (mp) - output size (31*31*96)
+        # 2nd block (mp) 
         x = layers.MaxPool2D(pool_size = (2,2), strides = (2,2))(x)
         
-        # 3rd block (cnn) - output size (31*31*256)
+        # 3rd block (cnn) 
         x = layers.Conv2D(32, kernel_size = (3, 3), padding='same')(x)
         x = layers.BatchNormalization()(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
+        x = layers.Activation('gelu')(x)
 
-        # 4th block (mp) - output size (15*15*256)
+        # 4th block (mp) 
         x = layers.MaxPool2D(pool_size = (3, 3), strides = (2,2))(x)
 
-        # 6th block (cnn) - output size (15*15*384)
+        # 6th block (cnn) 
         x = layers.Conv2D(64, kernel_size = (3, 3), padding='same')(x)
         x = layers.BatchNormalization()(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
+        x = layers.Activation('gelu')(x)
 
-        # 7th block (cnn) - output size (15*15*256)
+        # 7th block (cnn) 
         x = layers.Conv2D(32, kernel_size = (3, 3), padding='same')(x)
         x = layers.BatchNormalization()(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
+        x = layers.Activation('gelu')(x)
 
-        # 8th block (mp) - ouptut size (6*6*256) under 10*10 limit
+        # 8th block (mp)
         x = layers.MaxPool2D(pool_size= (5,5), strides = (2,2))(x)
 
-        # 9th block (flatten) - output size (9216)
+        # 9th block (flatten) 
         x = layers.Flatten()(x)
 
-        # 10th block (fnn) - output size (4096)
+        # 10th block (fnn) 
         x = layers.Dense(576,  kernel_regularizer=l2(0.001))(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
-        x = layers.Dropout(0.5)(x)
+        x = layers.BatchNormalization()(x)
+        x = layers.Activation('gelu')(x)
+        x = layers.Dropout(0.3)(x)
 
-        # 11th block (fnn) - output size (2048)
+        # 11th block (fnn) 
         x = layers.Dense(288,  kernel_regularizer=l2(0.001))(x)
-        x = layers.LeakyReLU(alpha=0.1)(x) 
-        x = layers.Dropout(0.5)(x)
+        x = layers.BatchNormalization()(x)
+        x = layers.Activation('gelu')(x)
+        x = layers.Dropout(0.3)(x)
         
         # output
         age_output = layers.Dense(1, activation="linear", name="age_output")(x)  # Linear activation for regression
         gender_output = layers.Dense(1, activation="sigmoid", name="gender_output")(x)  # Sigmoid for binary classification
         
+        model = models.Model(inputs=inputs, outputs=[age_output, gender_output])
         super().__init__(inputs=inputs, outputs=[age_output, gender_output])
+    
+    def get_config(self):
+        """
+        Returns the configuration of the model for serialization.
+        """
+        return super().get_config()
+
+    @classmethod
+    def from_config(cls, config):
+        """
+        Creates a model instance from a config dictionary.
+        """
+        return cls()  # Calls __init__() to rebuild the model
 
 
 model = VersionFourMiniModelA()
