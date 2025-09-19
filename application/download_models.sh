@@ -1,32 +1,29 @@
 #!/bin/bash
-# Exit script if any command fails
 set -e
 
 # --- Configuration ---
-GDRIVE_LINK="https://drive.google.com/drive/folders/1v7tpyxxz8V6LyBE1-17CF6Zu01PxAZS2?usp=sharing"
+# Ensure this link points to a correctly zipped, non-empty file
+GDRIVE_LINK="https://drive.google.com/uc?export=download&id=1Zm8nVGKZ2cSF6LiX045LGyjuI0muyJWk"
 OUTPUT_FILENAME="models.zip"
 DESTINATION_FOLDER="."
 # ---------------------
 
-# Check if the destination folder exists and is not empty
-if [ ! -d "$DESTINATION_FOLDER" ] || [ -z "$(ls -A "$DESTINATION_FOLDER")" ]; then
-    echo "🟡 Destination folder not found or is empty. Downloading assets..."
+EXPECTED_FILE="$DESTINATION_FOLDER/models/custom_model/2/fingerprint.pb"
 
-    # Install dependencies
-    pip install gdown
+if [ ! -e "$EXPECTED_FILE" ]; then
+    echo "🟡 Expected file not found. Downloading assets..."
+
+    # Use gdown, as it's designed to handle Google Drive's download flow
+    pip install --upgrade gdown
     apt-get update && apt-get install -y unzip --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-    # Download the file from Google Drive
-    gdown --output $OUTPUT_FILENAME "$GDRIVE_LINK"
-
-    # Create destination folder and unzip
-    mkdir -p $DESTINATION_FOLDER
+    # gdown will correctly handle the download confirmation
+    gdown "$GDRIVE_LINK" -O "$OUTPUT_FILENAME"
+    
     unzip $OUTPUT_FILENAME -d $DESTINATION_FOLDER
-
-    # Clean up the downloaded zip file
     rm $OUTPUT_FILENAME
 
     echo "✅ Assets downloaded and extracted successfully."
 else
-    echo "✅ Assets already exist in '$DESTINATION_FOLDER'. Skipping download."
+    echo "✅ Assets already exist. Skipping download."
 fi

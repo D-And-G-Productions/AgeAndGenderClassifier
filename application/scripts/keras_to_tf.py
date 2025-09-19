@@ -138,10 +138,10 @@ class VersionOneModelB(models.Model):
         return cls()  # Calls __init__() to rebuild the model
 
 
-# model = VersionFourMiniModelA()
-# model.summary()
-# model.load_weights("keras_models/custom_model_2/model.weights.h5")
-# model.export("models/custom_model/2")
+model = VersionFourMiniModelA()
+model.summary()
+model.load_weights("keras_models/custom_model_2/model.weights.h5")
+model.export("models/custom_model/2")
 
 model = VersionOneModelB()
 model.summary()
