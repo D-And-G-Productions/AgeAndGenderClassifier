@@ -44,7 +44,7 @@ async def predict(file: UploadFile = File(...)):
 
     combined = {
         "model_1": r1.json(),
-        "model_2": r2.json()
+        "model_2": r2.json(),
     }
 
     return combined
