@@ -29,6 +29,12 @@
       const url = URL.createObjectURL(file);
       preview.src = url;
     };
+    function extractPrediction(model) {
+      const age = Math.round(model.predictions[0].output_0[0]);
+      const genderScore = model.predictions[0].output_1[0];
+      const gender = genderScore < 0.5 ? "Male" : "Female";
+      return { age, gender };
+    }
 
     f.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -37,7 +43,11 @@
       try {
         const res = await fetch("/predict", { method: "POST", body: fd });
         const json = await res.json();
-        out.textContent = JSON.stringify(json, null, 2);
+
+        const pred1 = extractPrediction(json.model_1);
+        const pred2 = extractPrediction(json.model_2);
+
+        out.textContent = `Model 1\nAge: ${pred1.age}\nGender: ${pred1.gender}\n\nModel 2\nAge: ${pred2.age}\nGender: ${pred2.gender}`;
       } catch (err) {
         out.textContent = "Error: " + err;
       }
