@@ -1,7 +1,3 @@
-fastapi
-uvicorn[standard]
 pillow
+fastapi[standard]
 numpy
-requests
-jinja2
-python-multipart
