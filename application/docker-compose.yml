@@ -1,14 +1,10 @@
 services:
   custom_model_server:
-    image: tensorflow/serving:latest
-    container_name: custom_model_server
+    build:
+      context: .
+      dockerfile: model_server.Dockerfile
     ports:
-      - "8501:8501"            # REST
-    volumes:
-      - ./models:/models
-    command: >
-      --model_config_file=./models/models.config
-      --rest_api_port=8501
+      - "8501:8501"  # REST
 
   webapp:
     build:
@@ -16,8 +12,8 @@ services:
       dockerfile: webapp.Dockerfile
     container_name: webapp
     environment:
-      - TF_URL=http://custom_model_server:8501/v1/models/custom_model:predict
-      - TF_2_URL=http://custom_model_server:8501/v1/models/feature_extraction_model:predict
+      - TF_URL=http://127.0.0.1:8501/v1/models/custom_model:predict
+      - TF_2_URL=http://127.0.0.1:8501/v1/models/feature_extraction_model:predict
     ports:
       - "8000:8000"
     depends_on:
