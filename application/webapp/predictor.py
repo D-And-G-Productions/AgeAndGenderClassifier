@@ -7,17 +7,17 @@ class Predictor:
     def __init__(self, MODEL_URL) -> None:
         self._MODEL_URL = MODEL_URL
 
-    async def predict(self, file):
-        if await self._isNotImage(file):
+    async def predict(self, imageFile):
+        if await self._isNotImage(imageFile):
             raise HTTPException(400, "Please upload an image.")
 
-        imageArray = await ImageProcessing.imageBytesToArray(await file.read())
+        imageArray = await ImageProcessing.imageBytesToArray(await imageFile.read())
         responseJSON = await self._makeInferenceRequest(imageArray)
         prediction = await self._interpretResponseJSON(responseJSON)
         return prediction
 
-    async def _isNotImage(self, file):
-        contentType = file.content_type
+    async def _isNotImage(self, imageFile):
+        contentType = imageFile.content_type
         return contentType is None or not contentType.startswith("image/")
 
     async def _makeInferenceRequest(self, imageArray):
@@ -54,4 +54,3 @@ class Predictor:
 
     async def _output1ToGender(self, femaleProbability):
         return "Female" if femaleProbability >= 0.5 else "Male"
-
