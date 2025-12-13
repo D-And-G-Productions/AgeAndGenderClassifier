@@ -1,2 +1,4 @@
 keras_models
 models
+.DS_Store
+.nvimlog
